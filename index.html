@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YORIMICHI 出張ポーカー | あなたの場所が、今夜カジノになる。</title>
+<meta name="description" content="沼津・静岡で出張ポーカー。プロディーラーが本格カジノテーブルを持ってお伺いします。誕生日・二次会・ホームパーティー・企業イベントに。初心者歓迎・賭けなし。">
+<meta property="og:title" content="YORIMICHI 出張ポーカー">
+<meta property="og:description" content="あなたの場所が、今夜カジノになる。プロディーラーが本格カジノ体験をお届けします。">
+<meta property="og:image" content="assets/photos/hero.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{--red:#E63B10;--red-light:#F2603A;--gray:#3E3A39;--dark:#262220;--mid:#3E3A39;--card:#332F2E;--cream:#FAF6EF;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--dark);color:#fff;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 5%;display:flex;justify-content:space-between;align-items:center;transition:background .4s,border-color .4s;border-bottom:1px solid transparent;}
+nav.scrolled{background:rgba(10,10,10,.97);border-color:rgba(230,59,16,.2);}
+.nav-logo{display:flex;flex-direction:column;gap:.2rem;text-decoration:none;line-height:1;}
+.nav-logo img{height:26px;width:auto;display:block;}
+.nav-logo small{font-family:'Noto Sans JP';font-size:.5rem;letter-spacing:.38em;color:var(--red);font-weight:700;padding-left:.1rem;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;}
+.nav-links a{font-size:.76rem;color:rgba(255,255,255,.55);text-decoration:none;letter-spacing:.1em;transition:color .2s;}
+.nav-links a:hover{color:var(--red);}
+.nav-cta{background:var(--red);color:#000;padding:.5rem 1.2rem;font-size:.76rem;font-weight:700;text-decoration:none;letter-spacing:.05em;transition:opacity .2s;border-radius:2px;}
+.nav-cta:hover{opacity:.85;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.5rem;}
+.hamburger span{display:block;width:22px;height:1px;background:rgba(255,255,255,.7);}
+.nav-mobile{display:none;position:fixed;inset:0;background:var(--dark);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.2rem;}
+.nav-mobile.open{display:flex;}
+.nav-mobile a{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#fff;text-decoration:none;letter-spacing:.1em;}
+@media(max-width:680px){.nav-links,.nav-cta{display:none;}.hamburger{display:flex;}}
+
+/* HERO */
+.hero{position:relative;min-height:100svh;overflow:hidden;display:flex;align-items:center;}
+.hero-bg{position:absolute;inset:0;background:url('assets/photos/hero.jpg') center/cover no-repeat;transform:scale(1.08);transition:transform 8s ease;opacity:.42;}
+.hero-bg.loaded{transform:scale(1);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,.96) 38%,rgba(10,10,10,.45));}
+.hero-body{position:relative;z-index:1;padding:6rem 5% 3rem;max-width:760px;}
+.hero-tag{font-size:.66rem;letter-spacing:.45em;color:var(--red);font-weight:700;margin-bottom:1.4rem;display:flex;align-items:center;gap:.8rem;}
+.hero-tag::after{content:'';flex:1;height:1px;background:var(--red);opacity:.4;max-width:90px;}
+.hero-title{font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(2.1rem,6vw,4rem);line-height:1.25;letter-spacing:.02em;color:#fff;margin-bottom:1.2rem;}
+.hero-title em{font-style:normal;color:var(--red);}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.4vw,1.5rem);font-style:italic;color:var(--red-light);letter-spacing:.05em;margin-bottom:1.6rem;}
+.hero-copy{font-size:.92rem;color:rgba(255,255,255,.6);line-height:2.1;max-width:480px;margin-bottom:2.6rem;border-left:2px solid var(--red);padding-left:1.2rem;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{display:inline-flex;align-items:center;gap:.6rem;background:var(--red);color:#000;padding:.95rem 2.2rem;font-size:.9rem;font-weight:700;text-decoration:none;letter-spacing:.05em;transition:opacity .2s;border-radius:3px;}
+.btn-primary:hover{opacity:.85;}
+.btn-secondary{display:inline-block;border:1px solid rgba(230,59,16,.4);color:var(--red);padding:.95rem 2.2rem;font-size:.9rem;text-decoration:none;letter-spacing:.05em;transition:border-color .2s;border-radius:3px;}
+.btn-secondary:hover{border-color:var(--red);}
+.hero-scroll{position:absolute;bottom:2rem;left:5%;display:flex;align-items:center;gap:.8rem;color:rgba(255,255,255,.25);font-size:.68rem;letter-spacing:.2em;}
+.hero-scroll::after{content:'';width:40px;height:1px;background:currentColor;}
+
+/* SECTION COMMON */
+.sec-label{font-size:.64rem;letter-spacing:.4em;color:var(--red);font-weight:700;margin-bottom:.8rem;text-align:center;}
+.sec-title{font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);text-align:center;margin-bottom:.6rem;line-height:1.4;}
+.sec-bar{width:36px;height:2px;background:var(--red);margin:0 auto 3rem;opacity:.7;}
+
+/* SCENES */
+.scenes{padding:5.5rem 5%;background:var(--dark);}
+.scenes-inner{max-width:1100px;margin:0 auto;}
+.scenes-lead{text-align:center;font-size:.92rem;color:rgba(255,255,255,.55);line-height:2;max-width:620px;margin:0 auto 3.2rem;}
+.scene-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+.scene-card{position:relative;border-radius:6px;overflow:hidden;height:340px;}
+.scene-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+.scene-card:hover img{transform:scale(1.06);}
+.scene-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.92) 8%,rgba(10,10,10,.1) 70%);}
+.scene-body{position:absolute;bottom:0;left:0;right:0;z-index:1;padding:1.6rem;}
+.scene-no{font-family:'Bebas Neue';font-size:1rem;color:var(--red);letter-spacing:.1em;margin-bottom:.3rem;}
+.scene-name{font-family:'Noto Serif JP',serif;font-weight:700;font-size:1.2rem;margin-bottom:.5rem;}
+.scene-desc{font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.8;}
+@media(max-width:780px){.scene-grid{grid-template-columns:1fr;}.scene-card{height:240px;}}
+
+/* WHY */
+.why{padding:5.5rem 5%;background:var(--mid);}
+.why-inner{max-width:1000px;margin:0 auto;}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem;margin-top:1rem;}
+.why-card{background:var(--card);border:1px solid rgba(230,59,16,.14);border-radius:6px;padding:2rem 1.8rem;transition:border-color .3s;}
+.why-card:hover{border-color:rgba(230,59,16,.5);}
+.why-icon{font-size:1.8rem;margin-bottom:1rem;}
+.why-name{font-family:'Noto Serif JP',serif;font-weight:700;font-size:1.1rem;color:var(--red-light);margin-bottom:.7rem;}
+.why-text{font-size:.85rem;color:rgba(255,255,255,.58);line-height:1.95;}
+@media(max-width:680px){.why-grid{grid-template-columns:1fr;}}
+
+/* GALLERY */
+.gallery{padding:5.5rem 5%;background:var(--dark);}
+.gallery-inner{max-width:1100px;margin:0 auto;}
+.gallery-lead{text-align:center;font-size:.9rem;color:rgba(255,255,255,.55);line-height:2;max-width:600px;margin:0 auto 3rem;}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:.8rem;}
+.gallery-grid .g{overflow:hidden;border-radius:5px;}
+.gallery-grid .g img{width:100%;height:100%;object-fit:cover;transition:transform .6s;}
+.gallery-grid .g:hover img{transform:scale(1.06);}
+.gallery-grid .wide{grid-column:span 2;}
+.gallery-grid .tall{grid-row:span 2;}
+@media(max-width:780px){.gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:130px;}.gallery-grid .wide{grid-column:span 2;}.gallery-grid .tall{grid-row:span 1;}}
+
+/* FLOW */
+.flow{padding:5.5rem 5%;background:var(--dark);}
+.flow-inner{max-width:880px;margin:0 auto;}
+.flow-steps{display:flex;flex-direction:column;gap:0;}
+.flow-step{display:flex;gap:1.6rem;padding:1.6rem 0;border-bottom:1px solid rgba(255,255,255,.07);align-items:flex-start;}
+.flow-step:last-child{border-bottom:none;}
+.flow-num{flex-shrink:0;width:48px;height:48px;border:1px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:1.5rem;color:var(--red);}
+.flow-content h3{font-family:'Noto Serif JP',serif;font-weight:700;font-size:1.05rem;margin-bottom:.4rem;}
+.flow-content p{font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.9;}
+
+/* PLANS */
+.plans{background:var(--mid);padding:5.5rem 5%;}
+.plans-inner{max-width:1080px;margin:0 auto;}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-bottom:1.8rem;}
+.plan-card{background:var(--dark);border:1px solid rgba(230,59,16,.15);border-radius:6px;padding:2.4rem 1.8rem;display:flex;flex-direction:column;}
+.plan-card.featured{border-color:var(--red);position:relative;}
+.plan-card.featured::before{content:'人気No.1';position:absolute;top:-1px;left:1.8rem;background:var(--red);color:#000;font-size:.62rem;font-weight:700;padding:.3rem .8rem;letter-spacing:.08em;border-radius:0 0 3px 3px;}
+.plan-name{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--red);margin-bottom:.2rem;}
+.plan-sub{font-size:.72rem;color:rgba(255,255,255,.42);margin-bottom:1.4rem;letter-spacing:.05em;}
+.plan-price{font-family:'Bebas Neue';font-size:2.8rem;color:#fff;line-height:1;margin-bottom:.2rem;}
+.plan-price span{font-size:1.1rem;margin-right:.15rem;}
+.plan-price small{font-size:.9rem;color:rgba(255,255,255,.5);letter-spacing:0;}
+.plan-price-note{font-size:.72rem;color:rgba(255,255,255,.38);margin-bottom:1.4rem;}
+.plan-items{list-style:none;display:flex;flex-direction:column;gap:.6rem;flex:1;}
+.plan-items li{font-size:.82rem;color:rgba(255,255,255,.62);display:flex;gap:.6rem;align-items:flex-start;line-height:1.6;}
+.plan-items li::before{content:'✦';color:var(--red);font-size:.6rem;margin-top:.3rem;flex-shrink:0;}
+.plan-note{font-size:.74rem;color:rgba(255,255,255,.35);text-align:center;line-height:1.9;}
+@media(max-width:780px){.plans-grid{grid-template-columns:1fr;}}
+
+/* OPTION */
+.option-row{max-width:880px;margin:2.5rem auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;}
+.opt{background:var(--dark);border:1px solid rgba(255,255,255,.08);border-radius:5px;padding:1rem;text-align:center;}
+.opt-name{font-size:.78rem;color:rgba(255,255,255,.7);margin-bottom:.3rem;}
+.opt-price{font-size:.74rem;color:var(--red);}
+@media(max-width:680px){.option-row{grid-template-columns:1fr 1fr;}}
+
+/* FAQ */
+.faq{padding:5.5rem 5%;background:var(--dark);}
+.faq-inner{max-width:760px;margin:0 auto;}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.08);}
+.faq-q{width:100%;background:none;border:none;color:#fff;text-align:left;padding:1.3rem 2rem 1.3rem 0;font-size:.92rem;font-family:inherit;cursor:pointer;position:relative;display:flex;gap:.8rem;align-items:flex-start;}
+.faq-q::before{content:'Q';color:var(--red);font-family:'Bebas Neue';font-size:1.1rem;flex-shrink:0;}
+.faq-q::after{content:'+';position:absolute;right:0;top:1.2rem;color:var(--red);font-size:1.3rem;transition:transform .3s;}
+.faq-item.open .faq-q::after{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-a p{padding:0 0 1.3rem 1.8rem;font-size:.84rem;color:rgba(255,255,255,.55);line-height:1.95;}
+
+/* RESERVE */
+.reserve{padding:5.5rem 5%;text-align:center;background:var(--mid);position:relative;overflow:hidden;}
+.reserve::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(230,59,16,.09) 0%,transparent 70%);}
+.reserve-inner{position:relative;z-index:1;max-width:620px;margin:0 auto;}
+.reserve-title{font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(1.7rem,4.5vw,2.6rem);margin-bottom:.6rem;line-height:1.4;}
+.reserve-bar{width:36px;height:2px;background:var(--red);margin:0 auto 2rem;opacity:.7;}
+.reserve-lead{font-size:.9rem;color:rgba(255,255,255,.55);line-height:2;margin-bottom:2.6rem;}
+.line-btn{display:inline-flex;align-items:center;gap:.8rem;background:#06C755;color:#fff;padding:1.1rem 3rem;font-size:1rem;font-weight:700;text-decoration:none;letter-spacing:.05em;transition:opacity .2s;border-radius:4px;}
+.line-btn:hover{opacity:.88;}
+.line-btn svg{width:24px;height:24px;fill:#fff;}
+.reserve-alt{margin-top:1.4rem;font-size:.78rem;color:rgba(255,255,255,.35);}
+.reserve-alt a{color:var(--red);text-decoration:none;}
+.reserve-area{margin-top:2.4rem;display:inline-flex;gap:2.5rem;border-top:1px solid rgba(255,255,255,.08);padding-top:2rem;flex-wrap:wrap;justify-content:center;}
+.reserve-area-item{text-align:center;}
+.reserve-area-label{font-size:.62rem;letter-spacing:.2em;color:rgba(255,255,255,.3);margin-bottom:.3rem;}
+.reserve-area-val{font-size:.86rem;color:rgba(255,255,255,.7);}
+
+/* FOOTER */
+footer{background:#050505;padding:3rem 5%;text-align:center;border-top:1px solid rgba(230,59,16,.1);}
+.footer-logo img{height:34px;width:auto;margin-bottom:.5rem;}
+.footer-logo small{display:block;font-size:.55rem;letter-spacing:.35em;color:var(--red);font-family:'Noto Sans JP';font-weight:700;margin-bottom:.3rem;}
+.footer-links{margin:1.2rem 0;display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+.footer-links a{font-size:.72rem;color:rgba(255,255,255,.4);text-decoration:none;letter-spacing:.05em;}
+.footer-links a:hover{color:var(--red);}
+.footer-sub{font-size:.68rem;color:rgba(255,255,255,.2);letter-spacing:.08em;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s,transform .8s;}
+.reveal.visible{opacity:1;transform:none;}
+.delay-1{transition-delay:.1s;}.delay-2{transition-delay:.2s;}.delay-3{transition-delay:.3s;}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#top" class="nav-logo"><img src="assets/logo_white.png" alt="YORIMICHI"><small>DELIVERY POKER</small></a>
+  <ul class="nav-links">
+    <li><a href="#scenes">利用シーン</a></li>
+    <li><a href="#why">選ばれる理由</a></li>
+    <li><a href="#gallery">ギャラリー</a></li>
+    <li><a href="#flow">ご利用の流れ</a></li>
+    <li><a href="#plans">料金</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#reserve" class="nav-cta">無料で相談する</a>
+  <button class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="mobileNav" class="nav-mobile">
+  <button onclick="document.getElementById('mobileNav').classList.remove('open')" style="position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;">✕</button>
+  <a href="#scenes" onclick="document.getElementById('mobileNav').classList.remove('open')">利用シーン</a>
+  <a href="#why" onclick="document.getElementById('mobileNav').classList.remove('open')">選ばれる理由</a>
+  <a href="#gallery" onclick="document.getElementById('mobileNav').classList.remove('open')">ギャラリー</a>
+  <a href="#flow" onclick="document.getElementById('mobileNav').classList.remove('open')">ご利用の流れ</a>
+  <a href="#plans" onclick="document.getElementById('mobileNav').classList.remove('open')">料金</a>
+  <a href="#reserve" onclick="document.getElementById('mobileNav').classList.remove('open')">相談する</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-body">
+    <div class="hero-tag">NUMAZU · SHIZUOKA / 出張ポーカー</div>
+    <h1 class="hero-title">あなたの場所が、<br><em>今夜、カジノになる。</em></h1>
+    <p class="hero-sub">YORIMICHI Delivery Poker</p>
+    <p class="hero-copy">プロのポーカーディーラー2名が、<br>本格テーブルを持ってあなたの会場へ。<br>最大8名で囲む、誕生日・二次会・宅飲みに<br>忘れられない非日常を。</p>
+    <div class="hero-btns">
+      <a href="#reserve" class="btn-primary">LINEで無料相談</a>
+      <a href="#plans" class="btn-secondary">料金を見る</a>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- SCENES -->
+<section class="scenes" id="scenes">
+  <div class="scenes-inner">
+    <div class="sec-label reveal">USE SCENE</div>
+    <h2 class="sec-title reveal delay-1">こんなシーンを、特別な夜に。</h2>
+    <div class="sec-bar reveal delay-2"></div>
+    <p class="scenes-lead reveal">「いつもの集まり」がもの足りない。そんなときこそ出張ポーカー。ルールを知らなくても大丈夫。プロディーラーが場を仕切り、全員が主役になれる時間をお届けします。</p>
+    <div class="scene-grid">
+      <div class="scene-card reveal">
+        <img src="https://images.unsplash.com/photo-1464349153735-7db50ed83c84?q=80&w=1200" alt="誕生日・記念日パーティー" loading="lazy">
+        <div class="scene-body">
+          <div class="scene-no">SCENE 01</div>
+          <div class="scene-name">誕生日・記念日</div>
+          <div class="scene-desc">主役を囲んでカジノナイト。いつもと違う特別な演出で、写真映えする思い出に。</div>
+        </div>
+      </div>
+      <div class="scene-card reveal delay-1">
+        <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?q=80&w=1200" alt="結婚式二次会・パーティー" loading="lazy">
+        <div class="scene-body">
+          <div class="scene-no">SCENE 02</div>
+          <div class="scene-name">結婚式二次会・パーティー</div>
+          <div class="scene-desc">幹事いらずの盛り上げ役。初対面同士でも自然に会話が生まれる、最強の余興。</div>
+        </div>
+      </div>
+      <div class="scene-card reveal delay-2">
+        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1200" alt="ホームパーティー・宅飲み" loading="lazy">
+        <div class="scene-body">
+          <div class="scene-no">SCENE 03</div>
+          <div class="scene-name">ホームパーティー・宅飲み</div>
+          <div class="scene-desc">いつものお家や会場が会員制ラウンジに。仲間と過ごす夜をワンランク上の体験へ。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="why-inner">
+    <div class="sec-label reveal">WHY YORIMICHI</div>
+    <h2 class="sec-title reveal delay-1">YORIMICHIが選ばれる理由</h2>
+    <div class="sec-bar reveal delay-2"></div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🎩</div>
+        <div class="why-name">プロディーラーが2名体制で出張</div>
+        <div class="why-text">沼津のポーカールームYORIMICHIで腕を磨くディーラーが2名でお伺い。交代・サポート要員も兼ねるので、最後まで安定した進行をお約束します。</div>
+      </div>
+      <div class="why-card reveal delay-1">
+        <div class="why-icon">🃏</div>
+        <div class="why-name">折りたたみ式の本格テーブルを持参</div>
+        <div class="why-text">持ち運びできる折りたたみ式ポーカーテーブルに、カジノチップ・カードを一式。会場で組み立て・撤収まで対応するので、準備も片付けも不要。手ぶらで本格ポーカー空間が完成します。</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🔰</div>
+        <div class="why-name">初心者レッスンが無料</div>
+        <div class="why-text">ルールを知らない方が大半でも問題なし。ご希望があれば初心者レッスンを無料でお付けします。ディーラーがリードするので参加するだけで楽しめます。</div>
+      </div>
+      <div class="why-card reveal delay-1">
+        <div class="why-icon">🏆</div>
+        <div class="why-name">トーナメントも、リングゲームも</div>
+        <div class="why-text">ご予約時に「優勝を競うトーナメント」か「出入り自由なリングゲーム」を選択可能。賭けは一切なしのアミューズメントなので、どなたでも安心です。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-inner">
+    <div class="sec-label reveal">OUR HOME</div>
+    <h2 class="sec-title reveal delay-1">運営は、沼津のポーカールーム<br>「YORIMICHI」</h2>
+    <div class="sec-bar reveal delay-2"></div>
+    <p class="gallery-lead reveal">出張サービスを運営するのは、沼津で人気のアミューズメントポーカールーム「YORIMICHI」。日々プロディーラーが立つ本格店舗の空気感とノウハウを、そのまま出張先へお届けします。</p>
+    <div class="gallery-grid reveal">
+      <div class="g tall"><img src="assets/photos/g4.jpg" alt="ポーカーテーブルと座席" loading="lazy"></div>
+      <div class="g wide"><img src="assets/photos/g2.jpg" alt="複数テーブルのある店内" loading="lazy"></div>
+      <div class="g"><img src="assets/photos/g6.jpg" alt="バーカウンター" loading="lazy"></div>
+      <div class="g"><img src="assets/photos/g7.jpg" alt="窓際のポーカーテーブル" loading="lazy"></div>
+      <div class="g"><img src="assets/photos/g8.jpg" alt="ポーカーテーブル" loading="lazy"></div>
+      <div class="g"><img src="assets/photos/g1.jpg" alt="チップの乗ったテーブルと夜景" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="flow" id="flow">
+  <div class="flow-inner">
+    <div class="sec-label reveal">FLOW</div>
+    <h2 class="sec-title reveal delay-1">ご利用の流れ</h2>
+    <div class="sec-bar reveal delay-2"></div>
+    <div class="flow-steps">
+      <div class="flow-step reveal">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <h3>LINE・Instagramでご相談</h3>
+          <p>日時・場所・人数・ご予算をお気軽にご連絡ください。最適なプランをご提案します。お見積りは無料です。</p>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <h3>プラン確定・ご予約</h3>
+          <p>内容と料金にご納得いただいたら予約確定。当日のイメージや景品の有無なども事前にすり合わせます。</p>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <h3>当日、会場へお届け</h3>
+          <p>ディーラーが機材一式を持って会場へ。設営からゲーム進行まで全ておまかせ。あなたは楽しむだけ。</p>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <h3>表彰・撤収</h3>
+          <p>最後はチャンピオン表彰で盛り上がりMAX。撤収も全てこちらで対応。会場に手間をかけません。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="plans" id="plans">
+  <div class="plans-inner">
+    <div class="sec-label reveal">PRICE</div>
+    <h2 class="sec-title reveal delay-1">料金プラン</h2>
+    <div class="sec-bar reveal delay-2"></div>
+    <p class="scenes-lead reveal" style="margin-bottom:2.6rem;">プランは <strong style="color:var(--red-light);">滞在時間</strong> で選ぶだけ。どのプランも<strong style="color:var(--red-light);">ディーラー2名・テーブル1台・最大8名</strong>、設営から撤収まで全て込みです。</p>
+    <div class="plans-grid">
+      <div class="plan-card reveal">
+        <div class="plan-name">2 hours</div>
+        <div class="plan-sub">2時間プラン — サクッと楽しむ</div>
+        <div class="plan-price"><span>¥</span>60,000</div>
+        <div class="plan-price-note">8名利用で1名あたり 7,500円</div>
+        <ul class="plan-items">
+          <li>プロディーラー2名が進行</li>
+          <li>ポーカーテーブル1台・機材一式</li>
+          <li>最大8名まで参加可能</li>
+          <li>設営・撤収すべて込み</li>
+        </ul>
+      </div>
+      <div class="plan-card featured reveal delay-1">
+        <div class="plan-name">3 hours</div>
+        <div class="plan-sub">3時間プラン — パーティーの定番</div>
+        <div class="plan-price"><span>¥</span>80,000</div>
+        <div class="plan-price-note">8名利用で1名あたり 10,000円</div>
+        <ul class="plan-items">
+          <li>プロディーラー2名が進行・盛り上げ</li>
+          <li>たっぷり遊べる人気の時間配分</li>
+          <li>トーナメント / リング選択可</li>
+          <li>設営・撤収すべて込み</li>
+        </ul>
+      </div>
+      <div class="plan-card reveal delay-2">
+        <div class="plan-name">4 hours</div>
+        <div class="plan-sub">4時間プラン — じっくり本格派</div>
+        <div class="plan-price"><span>¥</span>100,000</div>
+        <div class="plan-price-note">8名利用で1名あたり 12,500円</div>
+        <ul class="plan-items">
+          <li>プロディーラー2名がフル進行</li>
+          <li>本格トーナメントもゆったり開催</li>
+          <li>長時間の二次会・宴会に最適</li>
+          <li>設営・撤収すべて込み</li>
+        </ul>
+      </div>
+    </div>
+    <p class="plan-note reveal">※ 表示は税込・沼津市内の出張費込み価格です。<br>※ 出張費：沼津・三島エリアは無料／その他エリアは別途（裾野・富士など +3,000円〜）。まずは無料でお見積りを。</p>
+    <div class="option-row reveal" style="grid-template-columns:repeat(2,1fr);max-width:560px;">
+      <div class="opt"><div class="opt-name">時間延長</div><div class="opt-price">¥8,000 / 30分</div></div>
+      <div class="opt"><div class="opt-name">初心者レッスン</div><div class="opt-price">希望者は無料</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="sec-label reveal">FAQ</div>
+    <h2 class="sec-title reveal delay-1">よくあるご質問</h2>
+    <div class="sec-bar reveal delay-2"></div>
+    <div class="faq-item reveal">
+      <button class="faq-q">ポーカーを全く知らなくても大丈夫ですか？</button>
+      <div class="faq-a"><p>はい、まったく問題ありません。参加者の多くが未経験からスタートします。プロディーラーがルールを丁寧に説明し、ゲームをリードするので、初めての方でもすぐに楽しめます。</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q">お金を賭けるのですか？違法ではないですか？</button>
+      <div class="faq-a"><p>金銭を賭けることは一切ありません。チップを使ったアミューズメント（娯楽）としてのポーカーです。お金のやり取りは発生しないため、安心してお楽しみいただけます。</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q">どんな場所でも来てもらえますか？</button>
+      <div class="faq-a"><p>ご自宅・レンタルスペース・飲食店・オフィス・式場など幅広く対応します。テーブルを設置できるスペース（おおよそ2m×1m＋椅子分）があれば設営可能です。会場に不安があればご相談ください。</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q">対応エリアと出張費を教えてください。</button>
+      <div class="faq-a"><p>沼津・三島エリアは出張費無料です。裾野・富士・清水など周辺エリアは +3,000円〜、それ以遠は +5,000円〜（要相談）で対応します。エリア外の方もまずはお気軽にご相談ください。</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q">何人まで参加できますか？</button>
+      <div class="faq-a"><p>テーブル1台で最大8名までご参加いただけます。少人数でも盛り上がりますし、8名で囲むと一層本格的な雰囲気に。9名以上をご希望の場合は別途ご相談ください。</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q">トーナメントとリングゲーム、どちらがいいですか？</button>
+      <div class="faq-a"><p>優勝者を決めて盛り上がりたいなら「トーナメント」、出入り自由でゆるく長く楽しみたいなら「リングゲーム」がおすすめです。ご予約時にお選びいただけます。迷ったらシーンに合わせてご提案します。</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q">予約はいつまでにすればいいですか？</button>
+      <div class="faq-a"><p>ご希望日の1週間前までのご予約をおすすめします。直前のご相談も可能な限り対応しますので、まずはLINEまたはInstagramからお問い合わせください。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVE -->
+<section class="reserve" id="reserve">
+  <div class="reserve-inner">
+    <div class="sec-label reveal">CONTACT</div>
+    <h2 class="reserve-title reveal delay-1">まずは無料でご相談ください</h2>
+    <div class="reserve-bar reveal delay-2"></div>
+    <p class="reserve-lead reveal delay-3">「こんなイベントできる？」「予算はこのくらい」など、ざっくりしたご相談でOKです。<br>LINEまたはInstagramのDMから、お気軽にメッセージください。</p>
+    <a href="https://line.me/R/ti/p/@495gnfee" target="_blank" rel="noopener" class="line-btn reveal delay-3">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.04 2 11.05c0 3.51 2.2 6.58 5.51 8.3L6.5 22l3.04-1.61C10.3 20.79 11.15 21 12 21c5.52 0 10-4.04 10-9.05C22 6.04 17.52 2 12 2z"/></svg>
+      LINEで無料相談する
+    </a>
+    <p class="reserve-alt reveal delay-3">またはInstagram DMへ <a href="https://www.instagram.com/yorimichi_poker/" target="_blank">@yorimichi_poker</a></p>
+    <div class="reserve-area reveal delay-3">
+      <div class="reserve-area-item"><div class="reserve-area-label">対応エリア</div><div class="reserve-area-val">沼津・三島は出張費無料</div></div>
+      <div class="reserve-area-item"><div class="reserve-area-label">対応人数</div><div class="reserve-area-val">最大8名</div></div>
+      <div class="reserve-area-item"><div class="reserve-area-label">お見積り</div><div class="reserve-area-val">無料</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><img src="assets/logo_white.png" alt="YORIMICHI"><small>DELIVERY POKER</small></div>
+  <div class="footer-links">
+    <a href="https://yorimichi.beebloom.fun/" target="_blank">店舗サイト</a>
+    <a href="https://www.instagram.com/yorimichi_poker/" target="_blank">Instagram</a>
+    <a href="https://x.com/YORIMICHI_Poker" target="_blank">X</a>
+  </div>
+  <p class="footer-sub">© 2026 POKER ROOM YORIMICHI — BeeBloom LLC. ALL RIGHTS RESERVED.</p>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60));
+window.addEventListener('load',()=>document.getElementById('heroBg').classList.add('loaded'));
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});}));
+document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>{const item=q.parentElement;const a=item.querySelector('.faq-a');const open=item.classList.toggle('open');a.style.maxHeight=open?a.scrollHeight+'px':null;}));
+</script>
+</body>
+</html>
