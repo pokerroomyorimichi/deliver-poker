@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pokerroomyorimichi.github.io/deliver-poker/sitemap.xml
+Sitemap: https://deliver.yorimichi.beebloom.fun/sitemap.xml
